@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MyMap.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Modul na klasy uzytkowe</a> &gt; <a href="index.source.html" class="el_package">pl.edu.agh.kis.pz1.map</a> &gt; <span class="el_source">MyMap.java</span></div><h1>MyMap.java</h1><pre class="source lang-java linenums">package pl.edu.agh.kis.pz1.map;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Własna implementacja mapy wykorzystująca dwie równoległe listy do przechowywania
+ * kluczy i wartości. Klasa jest generyczna, gdzie K to typ klucza, a V to typ wartości.
+ */
+public class MyMap&lt;K, V&gt; implements Map&lt;K, V&gt; {
+    // Przechowuje klucze mapy
+    private final List&lt;K&gt; keys;
+    // Przechowuje wartości mapy, indeks wartości odpowiada indeksowi klucza
+    private final List&lt;V&gt; values;
+
+    /**
+     * Konstruktor inicjalizujący puste listy na klucze i wartości
+     */
+<span class="fc" id="L19">    public MyMap() {</span>
+<span class="fc" id="L20">        keys = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L21">        values = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L22">    }</span>
+
+    /**
+     * Dodaje parę klucz-wartość do mapy lub aktualizuje istniejącą wartość
+     * @param key Klucz
+     * @param value Wartość
+     * @return Poprzednia wartość dla danego klucza lub null jeśli klucz jest nowy
+     */
+    @Override
+    public boolean put(K key, V value) {
+<span class="fc" id="L32">        int index = keys.indexOf(key);</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        if (index &gt;= 0) {</span>
+            // Jeśli klucz istnieje, aktualizujemy wartość
+<span class="fc" id="L35">            values.set(index, value);</span>
+<span class="fc" id="L36">            return true;</span>
+        }
+        // Jeśli klucz jest nowy, dodajemy nową parę
+<span class="fc" id="L39">        keys.add(key);</span>
+<span class="fc" id="L40">        values.add(value);</span>
+<span class="fc" id="L41">        return false;</span>
+    }
+
+    /**
+     * Pobiera wartość dla danego klucza
+     * @param key Klucz
+     * @return Wartość dla klucza lub null jeśli klucz nie istnieje
+     */
+    @Override
+    public V get(K key) {
+<span class="fc" id="L51">        int index = keys.indexOf(key);</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        return index &gt;= 0 ? values.get(index) : null;</span>
+    }
+
+    /**
+     * Zwraca listę wszystkich kluczy w mapie
+     * @return Nowa lista zawierająca wszystkie klucze
+     */
+    @Override
+    public List&lt;K&gt; keys() {
+<span class="fc" id="L61">        return new ArrayList&lt;&gt;(keys);</span>
+    }
+
+    /**
+     * Usuwa parę klucz-wartość z mapy
+     * @param key Klucz do usunięcia
+     * @return zwraca true jeśli była taka wartosc
+     * false jesli jej nie bylo
+     */
+    @Override
+    public boolean remove(K key) {
+<span class="fc" id="L72">        int index = keys.indexOf(key);</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (index &gt;= 0) {</span>
+<span class="fc" id="L74">            keys.remove(index);</span>
+<span class="fc" id="L75">            return true;</span>
+        }
+<span class="fc" id="L77">        return false;</span>
+    }
+    @Override
+    public boolean contains (K key) {
+<span class="fc" id="L81">        return keys.contains(key);</span>
+    }
+
+    @Override
+    public Integer size(){
+<span class="fc" id="L86">        return keys.size();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

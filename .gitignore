@@ -1,0 +1,26 @@
+# Ignore IntelliJ IDEA workspace files
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/sonarlint/
+.idea/dictionaries/
+.idea/vcs.xml
+.idea/codeStyles/
+
+# Ignore compiled Java files
+*.class
+*.jar
+
+# Ignore build artifacts
+target/
+
+# Ignore Maven wrapper files
+.mvn/
+mvnw
+mvnw.cmd
+
+# Ignore log files
+*.log
+
+# Ignore system files
+.DS_Store
+Thumbs.db
